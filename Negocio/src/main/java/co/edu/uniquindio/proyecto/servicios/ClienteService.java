@@ -31,4 +31,6 @@ public interface ClienteService {
     Mascota actualizarMascota(Long idUsuario,Mascota mascota) throws Exception;
 
     Mascota obtenerMascota(Long idMascota) throws Exception;
+
+    List<Cliente> obtenerClientes();
 }

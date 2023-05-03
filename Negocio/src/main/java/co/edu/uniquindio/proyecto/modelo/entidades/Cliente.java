@@ -2,9 +2,7 @@ package co.edu.uniquindio.proyecto.modelo.entidades;
 
 import lombok.*;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +23,9 @@ public class Cliente extends Usuario{
     @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
     private List<Mascota> mascotas;
+
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private Usuario usuario;
 
 
     public Cliente(String nombre,Map<String,String> telefonos, @Email String email, String username, String password, String direccion) {

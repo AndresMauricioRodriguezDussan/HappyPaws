@@ -5,7 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -40,6 +42,14 @@ public class Usuario implements Serializable {
 
     @Column(nullable = false)
     private boolean enabled;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
+    private Set<UsuarioRol> usuarioRoles = new HashSet<>();
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id_usuario")
+    private Cliente cliente;
     @Builder
     public Usuario(String nombre, Map<String,String> telefonos, String email, String username, String password){
         this.nombre =  nombre;

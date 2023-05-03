@@ -191,4 +191,9 @@ public class ClienteServiceImpl implements ClienteService {
             return mascotaBuscada.get();
         }
     }
+
+    @Override
+    public List<Cliente> obtenerClientes() {
+        return clienteRepository.findAll();
+    }
 }
