@@ -1,0 +1,22 @@
+plugins {
+    id 'org.joinfaces' version '4.7.3'
+}
+
+dependencies {
+    implementation project(":Negocio")
+    implementation 'org.joinfaces:jsf-spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.primefaces:primefaces:11.0.0'
+}
+
+bootJar {
+    from('src/main/resources/static') {
+        into 'static'
+    }
+}
+
+bootJar {
+    from('src/main/resources/public') {
+        into 'public'
+    }
+}

@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+}
+
+
+allprojects {
+    group 'co.edu.uniquindio.proyecto'
+    version '1.0-SNAPSHOT'
+    description 'Aplicativo web para la gestion de una veterinaria'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+subprojects {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        runtimeOnly 'mysql:mysql-connector-java'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
